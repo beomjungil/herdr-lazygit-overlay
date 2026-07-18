@@ -1,19 +1,21 @@
 id = "beomjungil.lazygit-overlay"
 name = "Lazygit Overlay"
-version = "0.1.0"
-min_herdr_version = "0.7.0"
-description = "Open lazygit as a temporary Herdr overlay over the active pane."
+version = "0.2.0"
+min_herdr_version = "0.7.4"
+description = "Open lazygit as a session-modal Herdr popup over the active pane."
 platforms = ["macos", "linux"]
 
 [[panes]]
 id = "lazygit"
 title = "Lazygit"
-placement = "overlay"
+placement = "popup"
+width = "90%"
+height = "85%"
 command = ["lazygit"]
 
 [[actions]]
 id = "open"
-title = "Open Lazygit Overlay"
-description = "Open lazygit as an overlay over the active pane."
+title = "Open Lazygit Popup"
+description = "Open lazygit as a popup window over the active pane."
 contexts = ["workspace", "tab", "pane"]
 command = ["bash", "scripts/open.sh"]

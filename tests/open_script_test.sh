@@ -21,17 +21,23 @@ HERDR_PLUGIN_CONTEXT_JSON='{"focused_pane_cwd":"/Users/example/repo"}' \
 HERDR_TEST_ARGV_FILE="$argv_file" \
 "$repo_root/scripts/open.sh"
 
-if grep -qx -- "--target-pane" "$argv_file"; then
-  echo "open.sh must not pass --target-pane for overlay panes" >&2
-  cat "$argv_file" >&2
-  exit 1
-fi
+for rejected in --target-pane --direction; do
+  if grep -qx -- "$rejected" "$argv_file"; then
+    echo "open.sh must not pass $rejected for popup panes" >&2
+    cat "$argv_file" >&2
+    exit 1
+  fi
+done
 
 grep -qx -- "plugin" "$argv_file"
 grep -qx -- "pane" "$argv_file"
 grep -qx -- "open" "$argv_file"
 grep -qx -- "--placement" "$argv_file"
-grep -qx -- "overlay" "$argv_file"
+grep -qx -- "popup" "$argv_file"
+grep -qx -- "--width" "$argv_file"
+grep -qx -- "90%" "$argv_file"
+grep -qx -- "--height" "$argv_file"
+grep -qx -- "85%" "$argv_file"
 grep -qx -- "--focus" "$argv_file"
 grep -qx -- "--cwd" "$argv_file"
 grep -qx -- "/Users/example/repo" "$argv_file"

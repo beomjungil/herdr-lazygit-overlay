@@ -8,7 +8,9 @@ args=(
   plugin pane open
   --plugin "$plugin_id"
   --entrypoint lazygit
-  --placement overlay
+  --placement popup
+  --width "90%"
+  --height "85%"
   --focus
 )
 
